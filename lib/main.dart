@@ -1,8 +1,10 @@
 import 'package:emart_seller/const/const.dart';
+import 'package:emart_seller/const/firebase_const.dart';
 import 'package:emart_seller/views/auth_screen/login_screen.dart';
+import 'package:emart_seller/views/home_screen/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:emart_seller/const/const.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,15 +12,39 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    checkUser();
+  }
+
+  var isLoggedIn = false;
+
+  checkUser() async {
+    auth.authStateChanges().listen((User? user) {
+      if (user == null) {
+        isLoggedIn = false;
+      } else {
+        isLoggedIn = true;
+      }
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: appname,
-      home: const LoginScreen(),
+      home: isLoggedIn ? const Home() : const LoginScreen(),
       theme: ThemeData(
           appBarTheme: const AppBarTheme(
               backgroundColor: Colors.transparent, elevation: 0.0)),

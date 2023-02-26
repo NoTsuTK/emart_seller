@@ -4,7 +4,6 @@ import 'package:emart_seller/views/home_screen/home_screen.dart';
 import 'package:emart_seller/views/orders_screen/orders_screen.dart';
 import 'package:emart_seller/views/products_screen/products_screen.dart';
 import 'package:emart_seller/views/profile_screen/profile_screen.dart';
-import 'package:emart_seller/views/widget/normal_text.dart';
 import 'package:get/get.dart';
 
 class Home extends StatelessWidget {

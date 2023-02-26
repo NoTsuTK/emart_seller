@@ -1,5 +1,6 @@
 import 'package:emart_seller/const/const.dart';
 import 'package:emart_seller/views/widget/normal_text.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart' as intl;
 
 AppBar appbarWidget(title) {
